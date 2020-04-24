@@ -18,8 +18,8 @@ app.use(express.json({
 const connection = mySQL.createConnection(
     {
         host: "localhost",
-        user: "root",
-        password: "root",
+        user: "root", //CHANGE
+        password: "root", //CHANGE
         database: "expenses"
     }
 );
