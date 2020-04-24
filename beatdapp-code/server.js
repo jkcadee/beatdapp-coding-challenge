@@ -44,17 +44,21 @@ app.post("/express_backend", function(req, res) {
   console.log(values);
 
   connection.query("INSERT INTO expenseTracker(name, item_cost, category) VALUES (?)", [values], function(err, res) {
-
+    if(err) {
+      throw err;
+    }
   });
 });
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
+// for the queries to/from the database, changes will be loaded onto the webpage when refreshed.
+
 // creates a GET route to grab data from the database
 app.get('/express_backend', (req, res) => {
   try {
-    const sqlQuery = 'SELECT * FROM expenseTracker';
+    const sqlQuery = "SELECT * FROM expenseTracker";
     connection.query(sqlQuery, function(err, result) {
       res.end(JSON.stringify(result));
     });
